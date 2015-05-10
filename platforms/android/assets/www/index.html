@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
+
+    <script type="text/javascript" src="cordova.js"></script>
+
+    <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="js/funzioni.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <title>PeopleFinder</title>
+</head>
+
+<body>
+
+
+    <div data-role="page" id="homePage">
+        <div data-theme="" data-role="header" style="background-color:#04A; color:white;">
+            <h2>STREETER</h2>
+            <a id="btnExit" data-role="button" href="#homePage" data-iconpos="right" class="ui-btn-right"></a>
+        </div>
+
+        <div data-role="content">
+            <div id="quadrante">
+                <div id="geolocation"></div>
+                <div id="bussola_info"></div>
+                <div id="freccia">
+                    <img src="img/su.png" id="img_bussola" height="128" width="128">
+                </div>
+                <hr/>
+                <div id="msg"></div>
+                <div id="msg2"></div>
+            </div>
+            <a id="btnInserimento" data-role="button" href="#inserimento" data-icon="plus" data-iconpos="left">I tuoi dati</a>
+            <a id="btnTrackList" data-role="button" href="#tracklist" data-icon="bars" data-iconpos="left">Vedi chi c'è vicino</a>
+            <a id="btnToggleGeoLoc" data-role="button" href="#homePage" data-iconpos="left">
+                GPS
+            </a>
+            <a id="btnToggleCompass" data-role="button" href="#homePage" data-iconpos="left">
+                Bussola
+            </a>
+        </div>
+    </div>
+
+
+    <div data-role="page" id="inserimento">
+        <div data-theme="" data-role="header">
+            <h3>Inserisci:</h3>
+            <a id="btnExit" data-role="button" href="#homePage" data-iconpos="right" class="ui-btn-right" style="background-color:white; color:black"></a>
+        </div>
+        <div data-role="content">
+            <div data-role="fieldcontain">
+            </div>
+            <div data-role="fieldcontain">
+                <textarea name="txtNome" id="txtNome" placeholder="Nome..." value="" type="text"></textarea>
+                <textarea name="txtCognome" id="txtCognome" placeholder="Cognome..." value="" type="text"></textarea>
+                <textarea name="txtEmail" id="txtEmail" placeholder="Email..." value="" type="text"></textarea>
+                <textarea name="txtInteressi" id="txtInteressi" placeholder="I miei interessi sono..."></textarea>
+                <textarea name="txtPersonalita" id="txtPersonalita" placeholder="Sono una persona..." value="" type="text"></textarea>
+            </div>
+            <div data-role="fieldcontain">
+                <a id="btnSalva" data-role="button" href="#">Invia</a>
+                <a id="btnBack" data-role="button" href="#homePage">Torna Indietro</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-role="page" id="tracklist">
+        <div data-theme="" data-role="header" style="background-color:#04A; color:white;">
+            <h3>Persone vicine a te</h3>
+            <a id="btnExit" data-role="button" href="#homePage" data-iconpos="right" class="ui-btn-right"></a>
+        </div>
+        <div data-role="fieldcontain">
+            <a id="btnBack" data-role="button" href="#homePage">Torna Indietro</a>
+        </div>
+
+
+        <div data-role="content">
+            <div data-role="fieldcontain" id="trackelement">
+                <p name="trackelement" style="color:white">Caricamento dati dal server in corso</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!--
+    <div data-role="page" id="info" style="background-color:#19F;">
+        <div data-theme="" data-role="header" style="background-color:#04A; color:white;">
+            <h3>I miei dati</h3>
+            <a id="btnExit" data-role="button" href="#homePage" data-iconpos="right" class="ui-btn-right" style="background-color:#D31; color:black; border-radius: 48px; height: 16px; width: 10px"></a>
+        </div>
+        <div data-role="fieldcontain">
+            <a id="btnBack" data-role="button" href="#homePage" style="background-color:#04A; color:white;">Torna Indietro</a>
+        </div>
+        <div data-role="content" style="background-color:#19F; color:white;">
+            <ul id="liElencoDati" data-role="content" data-divider-theme="d" data-inset="true" style="background-color:#04A; color:white;">
+                <li data-role="fieldcontain" role="heading">I miei dati</li>
+                <li data-theme="c">
+                    <textarea readonly id="infoNome" data-transition="slide">Nome</textarea>
+                </li>
+                <li data-theme="c">
+                    <textarea readonly id="infoCognome" data-transition="slide">Cognome</textarea>
+                </li>
+                <li data-theme="c">
+                    <textarea readonly id="infoEmail" data-transition="slide">Email</textarea>
+                </li>
+                <li data-theme="c">
+                    <textarea readonly id="infoInteressi" data-transition="slide">Interessi</textarea>
+                </li>
+                <li data-theme="c">
+                    <textarea readonly id="infoPersonalita" data-transition="slide">Personalita</textarea>
+                </li>
+                <li data-theme="c">
+                    <textarea readonly id="infoLat" data-transition="slide">Latitudine</textarea>
+                </li>
+                <li data-theme="c">
+                    <textarea readonly id="infoLongit" data-transition="slide">Longitudine</textarea>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div data-role="page" id="server" style="background-color:#19F;">
+        <div data-theme="" data-role="header" style="background-color:#04A; color:white">
+            <h3>Persone vicine</h3>
+            <a id="btnExit" data-role="button" href="#homePage" data-iconpos="right" class="ui-btn-right" style="background-color:#D31; color:black; border-radius: 48px; height: 16px; width: 10px"></a>
+        </div>
+        <div data-role="fieldcontain">
+            <a id="btnBack2" data-role="button" href="#homePage" style="background-color:#04A; color:white;">
+                    Torna Indietro
+                </a>
+        </div>
+        <div data-role="content" style="background-color:#19F; color:white;">
+            <ul id="liElencoDati" data-role="listview" data-divider-theme="d" data-inset="true" style="background-color:#04A; color:white;">
+                <li data-role="fieldcontain" id="listaEsterna" role="heading">
+                    Attiva la geolocalizzazione e Internet e torna su questa pagina.
+                </li>
+            </ul>
+        </div>
+    </div>
+    -->
+</body>
+
+</html>
